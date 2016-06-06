@@ -3,6 +3,6 @@
 require_once 'app/init.php';
 
 $db = new DB;
-$query = $db->query("INSERT INTO google_users (google_id, email) values ('123', 'antonio@gmail.com')");
+$googleClient = new Google_Client;
 
-var_dump($query);
+$auth = new GoogleAuth($db, $googleClient);
