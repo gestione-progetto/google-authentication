@@ -7,7 +7,7 @@ $googleClient = new Google_Client;
 
 $auth = new GoogleAuth($db, $googleClient);
 
-$authUrl = 1; // TODO - change me
+echo $authUrl = $auth->checkToken();
 ?>
 
 <!DOCTYPE html>

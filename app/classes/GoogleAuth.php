@@ -15,4 +15,16 @@ class GoogleAuth
         $this->client->setRedirectUri();
         $this->client->setScopes('email');
     }
+
+    public function checkToken(){
+        if(isset($_SESSION['access_token']) && !emply($_SESSION['access_token']))
+        {
+            $this-client->setAccessToken($_SESSION['access_token'])
+        }
+        else {
+            return $this-client->createUrl();
+        }
+
+        return '';
+    }
 }
