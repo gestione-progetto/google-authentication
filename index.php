@@ -8,6 +8,7 @@ $googleClient = new Google_Client;
 $auth = new GoogleAuth($db, $googleClient);
 
 echo $authUrl = $auth->checkToken();
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ echo $authUrl = $auth->checkToken();
         <?php if($authUrl): ?>
             <a href="<?=$authUrl?>">Sign in with Google</a>
         <?php else: ?>
-            >You are logged in.</a><a href="logout.php">Log out</a>
+            You are logged in.<a href="logout.php">Log out</a>
         <?php endif;?>
     </body>
 </html>
