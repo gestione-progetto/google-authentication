@@ -11,8 +11,9 @@ class GoogleAuth
         $this->db = $db;
         $this->client = $googleClient;
         $this->redirectUri = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $this->client->setClientId('192153637896-c3c2m8veqjc552nmj2ksgaaumtifbik1.apps.googleusercontent.com');
-        $this->client->setClientSecret('CzWaUukwRPX7Oe7WbIfsqC2q');
+        // TODO get ClientId and ClientSecret from client_secret...googleusercontent.com.json
+        $this->client->setClientId('xxx');
+        $this->client->setClientSecret('xxx');
         $this->client->setRedirectUri($this->redirectUri);
         $this->client->setScopes('email');
     }
