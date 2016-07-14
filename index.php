@@ -7,7 +7,15 @@ $googleClient = new Google_Client;
 
 $auth = new GoogleAuth($db, $googleClient);
 
-$authUrl = 1; // TODO - change me
+$authUrl = $auth->checkToken();
+
+if($auth->login())
+{
+    var_dump($_SESSION['access_token']);
+    $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +28,7 @@ $authUrl = 1; // TODO - change me
         <?php if($authUrl): ?>
             <a href="<?=$authUrl?>">Sign in with Google</a>
         <?php else: ?>
-            >You are logged in.</a><a href="logout.php">Log out</a>
+            You are logged in.<a href="logout.php">Log out</a>
         <?php endif;?>
     </body>
 </html>
