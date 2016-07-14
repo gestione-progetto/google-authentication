@@ -7,7 +7,14 @@ $googleClient = new Google_Client;
 
 $auth = new GoogleAuth($db, $googleClient);
 
-echo $authUrl = $auth->checkToken();
+$authUrl = $auth->checkToken();
+
+if($auth->login())
+{
+    var_dump($_SESSION['access_token']);
+    $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+}
 
 ?>
 

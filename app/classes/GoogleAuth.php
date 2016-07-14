@@ -17,7 +17,8 @@ class GoogleAuth
         $this->client->setScopes('email');
     }
 
-    public function checkToken(){
+    public function checkToken()
+    {
         if(isset($_SESSION['access_token']) && !emply($_SESSION['access_token']))
         {
             $this->client->setAccessToken($_SESSION['access_token']);
@@ -27,5 +28,22 @@ class GoogleAuth
         }
 
         return '';
+    }
+
+    public function login()
+    {
+        if(isset($_GET['code']))
+        {
+            $this->client->authenticate($_GET['code']);
+            // $this->client->refreshToken();
+
+            $_SESSION['access_token'] = $this->client->getAccessToken();
+
+            // TODO: store user in DB
+
+            return true;
+        }
+
+        return false;
     }
 }
